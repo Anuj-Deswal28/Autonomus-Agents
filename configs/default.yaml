@@ -1,0 +1,5 @@
+runtime:
+  mode: simulation
+  clock: simulation
+transport:
+  type: local

@@ -1,0 +1,15 @@
+name: warehouse_only
+runtime:
+  mode: simulation
+  clock: simulation
+modules:
+  - name: warehouse_robots
+    config: modules/warehouse_robots/config.yaml
+transport:
+  type: local
+coordination:
+  strategy: task_allocator
+results:
+  directory: results/warehouse_only
+  save_metrics: true
+  save_traces: true

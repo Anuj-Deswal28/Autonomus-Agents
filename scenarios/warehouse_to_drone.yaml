@@ -1,0 +1,17 @@
+name: warehouse_to_drone
+runtime:
+  mode: simulation
+  clock: simulation
+modules:
+  - name: warehouse_robots
+    config: modules/warehouse_robots/config.yaml
+  - name: drone_fleet
+    config: modules/drone_fleet/config.yaml
+transport:
+  type: local
+coordination:
+  strategy: task_allocator
+results:
+  directory: results/warehouse_to_drone
+  save_metrics: true
+  save_traces: true
