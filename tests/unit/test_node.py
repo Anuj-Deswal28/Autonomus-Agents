@@ -15,7 +15,6 @@ def test_nodes_can_communicate():
         sent_message = await robot_a.send(
             recipient_id="robot-B",
             topic="task.assigned",
-            timestamp=1.0,
             payload={"task_id": "task-001"},
         )
 
@@ -37,7 +36,6 @@ def test_node_sets_its_own_identity():
         message = await robot_a.send(
             recipient_id="robot-B",
             topic="robot.status",
-            timestamp=1.0,
         )
 
         assert message.sender_id == "robot-A"
