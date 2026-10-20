@@ -4,8 +4,8 @@ from .interface import Clock
 
 
 class SimulationClock(Clock):
-    def __init__(self, start: float = 0.0) -> None:
-        self._time = float(start)
+    def __init__(self, start_time: float = 0.0) -> None:
+        self._time = float(start_time)
 
     def now(self) -> float:
         return self._time
