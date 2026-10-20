@@ -3,6 +3,7 @@ from core.clock.clock import Clock
 from core.clock.system_clock import SystemClock
 from core.interfaces.transport import Transport
 from core.models.message import Message
+from collections.abc import Awaitable, Callable
 
 
 class Node:
@@ -30,4 +31,19 @@ class Node:
     async def receive(self) -> Message:
         """Receive the next message addressed to this node."""
         return await self._transport.receive(self.node_id)
+
+    
+    async def run(self,handler: Callable[[Message], Awaitable[None]],) -> None:
+        """Continuously receive messages and pass them to a handler."""
+        while True:
+            message = await self.receive()
+            try:
+                await handler(message)
+            except Exception as error:
+                print(
+                    f"Node {self.node_id} failed to process "
+                    f"message {message.message_id}: {error}"
+                )
+
+
 
